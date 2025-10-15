@@ -1,0 +1,27 @@
+using Serilog;
+
+namespace Common.Loggers;
+
+internal sealed class TestLogger07710 : TestLogger
+{
+    private static readonly ILogger Logger = Serilog.Log.ForContext<TestLogger07710>();
+
+    public override int Id => 7710;
+
+    public override void Log()
+    {
+        if (Id % 1000 == 0)
+        {
+            Logger.Information("Hello from {Logger} with ID {Id}", nameof(TestLogger07710), Id);
+        }
+        else if (Id % 100 == 0)
+        {
+            Logger.Debug("Hello from {Logger} with ID {Id}", nameof(TestLogger07710), Id);
+        }
+        else
+        {
+            Logger.Verbose("Hello from {Logger} with ID {Id}", nameof(TestLogger07710), Id);
+        }
+    }
+}
+
